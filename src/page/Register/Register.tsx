@@ -2,6 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./styles/Register.css";
+import axios from "axios";
 export interface RegisterInterface {}
 
 interface FormValues {
@@ -20,8 +21,15 @@ const Register: React.FC<RegisterInterface> = () => {
       password1: "",
       password2: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async ({email,lastName,firstName,password1,password2}) => {
+      const res = await axios.post('http://localhost:3001/user/register',{
+        email,
+        lastName,
+        firstName,
+        password: password1,
+        passwordConfirm: password2
+      })
+      console.log(res)
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
