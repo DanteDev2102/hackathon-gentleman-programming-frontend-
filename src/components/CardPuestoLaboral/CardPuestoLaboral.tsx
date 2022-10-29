@@ -1,30 +1,30 @@
 import { Button, Card, CardActions, CardContent, CardHeader, makeStyles, Typography } from '@mui/material';
 import React from 'react';
 import './styles/CardPuestoLaboral.css';
-export interface CardPuestoLaboralInterface {}
+import { PuestoTabajo } from '../../models/PustoTrabajo';
+export interface CardPuestoLaboralInterface {
+	puestoTabajo : PuestoTabajo
+}
 
 
 
-const CardPuestoLaboral : React.FC<CardPuestoLaboralInterface> = () => {
 
-	
+const CardPuestoLaboral : React.FC<CardPuestoLaboralInterface> = ( prop ) => {
+
+	const { puestoTabajo } = prop
 
 	return (
 		<Card className={''}>
 			<CardContent>
-				<CardHeader title={'Diseñador(a) UX/UI'}>
-					
-				</CardHeader>
-					
 
-					<Typography variant="subtitle1" color="textSecondary">
-					Semi Senior | Freelace
-					</Typography>
-			
-				
-
+				<CardHeader title={puestoTabajo.attributes.title} />
+	
+				<Typography variant="subtitle1" color="textSecondary">
+					{puestoTabajo.attributes.modality} | {puestoTabajo.attributes.seniority}
+				</Typography>
 			
 			</CardContent>
+
 			<CardActions>
 				<Button size="small">Añadir</Button>
 			</CardActions>
