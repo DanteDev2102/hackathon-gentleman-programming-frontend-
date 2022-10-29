@@ -25,13 +25,13 @@ const Login: React.FC<LoginInterface> = () => {
 
   return (
     <div className="login">
-      <div className="header">
+      <div className="hero">
         <h3>Jobizz</h3>
         <p>Welcame Back 👋</p>
         <p>Let's log in, Apply to jobs!</p>
       </div>
 
-      <form>
+      <form className="login-form" noValidate onSubmit={formik.handleSubmit}>
         <input
           type="email"
           name="email"
@@ -40,6 +40,9 @@ const Login: React.FC<LoginInterface> = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
+        {formik.touched.email && formik.errors.email && (
+          <span>{formik.errors.email}</span>
+        )}
         <input
           type="password"
           name="password"
@@ -48,9 +51,14 @@ const Login: React.FC<LoginInterface> = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
+        {formik.touched.password && formik.errors.password && (
+          <span>{formik.errors.password}</span>
+        )}
         <button type="submit">Log in</button>
       </form>
-      <span>Forgot Password? </span>
+      <div className="button-section">
+        <span>Forgot Password? </span>
+      </div>
     </div>
   );
 };

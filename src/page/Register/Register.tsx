@@ -44,7 +44,7 @@ const Register: React.FC<RegisterInterface> = () => {
       <p>Registration 👍</p>
       <p>Let's Register, Apply to jobs!</p>
 
-      <form noValidate onSubmit={formik.handleSubmit}>
+      <form className="register-form" noValidate onSubmit={formik.handleSubmit}>
         <input
           type="text"
           name="firstName"
