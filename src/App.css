@@ -12,7 +12,15 @@
   display: flex;
   justify-content: start;
   align-items: flex-start;
+  box-sizing: border-box;
   flex-direction: column;
+}
+
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .logo {

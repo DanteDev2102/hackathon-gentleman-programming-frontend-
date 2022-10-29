@@ -1,0 +1,1 @@
+export { default as ContainsPuestosTrabajo } from './ContainsPuestosTrabajo';
