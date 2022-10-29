@@ -8,8 +8,8 @@ export interface RegisterInterface {}
 interface FormValues {
   name: string;
   email: string;
-  password1: string;
-  password2: string;
+  password: string;
+  passwordConfirm: string;
 }
 
 const Register: React.FC<RegisterInterface> = () => {
@@ -18,18 +18,24 @@ const Register: React.FC<RegisterInterface> = () => {
       firstName: "",
       lastName: "",
       email: "",
-      password1: "",
-      password2: "",
+      password: "",
+      passwordConfirm: "",
     },
-    onSubmit: async ({email,lastName,firstName,password1,password2}) => {
-      const res = await axios.post('http://localhost:3001/user/register',{
+    onSubmit: async ({
+      email,
+      lastName,
+      firstName,
+      password,
+      passwordConfirm,
+    }) => {
+      const res = await axios.post("http://localhost:3001/user/register", {
         email,
         lastName,
         firstName,
-        password: password1,
-        passwordConfirm: password2
-      })
-      console.log(res)
+        password,
+        passwordConfirm,
+      });
+      console.log(res);
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -39,9 +45,9 @@ const Register: React.FC<RegisterInterface> = () => {
         .max(15, "Must be 15 characters or less")
         .required("Required"),
       email: Yup.string().email("Invalid email").required("Required"),
-      password1: Yup.string().required("No password provided."),
-      password2: Yup.string()
-        .oneOf([Yup.ref("password1"), null], "Passwords must match")
+      password: Yup.string().required("No password provided."),
+      passwordConfirm: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("Required"),
     }),
   });
@@ -88,25 +94,25 @@ const Register: React.FC<RegisterInterface> = () => {
         )}
         <input
           type="password"
-          name="password1"
+          name="password"
           placeholder="Password"
-          value={formik.values.password1}
+          value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        {formik.touched.password1 && formik.errors.password1 && (
-          <span>{formik.errors.password1}</span>
+        {formik.touched.password && formik.errors.password && (
+          <span>{formik.errors.password}</span>
         )}
         <input
           type="password"
-          name="password2"
+          name="passwordConfirm"
           placeholder="Repet Password"
-          value={formik.values.password2}
+          value={formik.values.passwordConfirm}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        {formik.touched.password2 && formik.errors.password2 && (
-          <span>{formik.errors.password2}</span>
+        {formik.touched.passwordConfirm && formik.errors.passwordConfirm && (
+          <span>{formik.errors.passwordConfirm}</span>
         )}
         <button type="submit">Register</button>
       </form>
