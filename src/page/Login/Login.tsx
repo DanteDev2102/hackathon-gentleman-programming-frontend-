@@ -25,9 +25,11 @@ const Login: React.FC<LoginInterface> = () => {
 
   return (
     <div className="login">
-      <h3>Jobizz</h3>
-      <p>Welcame Back 👋</p>
-      <p>Let's log in, Apply to jobs!</p>
+      <div className="header">
+        <h3>Jobizz</h3>
+        <p>Welcame Back 👋</p>
+        <p>Let's log in, Apply to jobs!</p>
+      </div>
 
       <form>
         <input
