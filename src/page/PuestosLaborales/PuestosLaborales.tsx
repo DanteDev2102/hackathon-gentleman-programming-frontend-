@@ -14,7 +14,7 @@ export interface PuestosLaboralesInterface {}
 const PuestosLaborales : React.FC<PuestosLaboralesInterface> = () => {
 
 	const [puestosTrabajo, setPuestosTrabajo] = useState<ResposePuestoTabajo>(puestosTrabajoData)
-
+	console.log(puestosTrabajo)
 	const init = async() => {
 		let a = await getPuestosTrabajo();
 
@@ -36,6 +36,7 @@ const PuestosLaborales : React.FC<PuestosLaboralesInterface> = () => {
 
 			<Pagination count={10} />
 
+			
 		</div >
 	)
 };

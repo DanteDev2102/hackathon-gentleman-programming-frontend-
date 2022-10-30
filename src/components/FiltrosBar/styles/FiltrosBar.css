@@ -1,7 +1,13 @@
+.filtrosbar {
+   display: flex;
+   flex-direction: column;
+}
 
 .filtrosbar form {
-   gap: 20px;
+   display: flex;
+   justify-content: center;
    flex-wrap: wrap;
+   gap: 10px;
 }
 .filtrosbar button {
    margin-top: 20px;

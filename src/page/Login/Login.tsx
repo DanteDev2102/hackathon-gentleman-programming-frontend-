@@ -1,7 +1,7 @@
 import { useAppDispatch, useAuth } from '@/hooks'
 import { setCredentials } from '@/redux/login/authSlice'
 import { useLoginMutation } from '@/redux/login/loginApiSlice'
-import { PrivateRoutes, PublicRoutes } from '@/routes'
+import { PrivateRoutes } from '@/routes'
 import { Button } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
