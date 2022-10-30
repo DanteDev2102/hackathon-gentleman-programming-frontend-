@@ -1,0 +1,8 @@
+
+.filtrosbar form {
+   gap: 20px;
+   flex-wrap: wrap;
+}
+.filtrosbar button {
+   margin-top: 20px;
+}
