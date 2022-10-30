@@ -1,17 +1,21 @@
-import { useState } from "react";
-
-import Router from "./router/Router";
-import { Login } from "./page/Login";
-import { Register } from "./page/Register";
+import { store } from '@/redux'
+import { Provider } from 'react-redux'
+import Router from './router/Router'
+import { Header, Layout } from '@/components'
+import { Navbar } from './components/Navbar'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <Register />
-    </div>
-  );
+    <BrowserRouter>
+      <Layout>
+        <Navbar />
+        <Provider store={store}>
+          <Router />
+        </Provider>
+      </Layout>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
