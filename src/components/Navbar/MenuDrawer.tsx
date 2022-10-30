@@ -12,10 +12,13 @@ import LoginIcon from '@mui/icons-material/Login'
 
 export default function MenuDrawer() {
   const navigate = useNavigate()
+  const handleNavigate = (route: string) => () => {
+    navigate(route)
+  }
   return (
     <List sx={{ textAlign: 'center' }}>
       <ListItem disablePadding>
-        <ListItemButton onClick={() => navigate(PublicRoutes.HOME)}>
+        <ListItemButton onClick={handleNavigate(PublicRoutes.HOME)}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
@@ -24,7 +27,7 @@ export default function MenuDrawer() {
       </ListItem>
 
       <ListItem disablePadding>
-        <ListItemButton onClick={() => navigate(PublicRoutes.LOGIN)}>
+        <ListItemButton onClick={handleNavigate(PublicRoutes.LOGIN)}>
           <ListItemIcon>
             <LoginIcon />
           </ListItemIcon>
@@ -33,7 +36,7 @@ export default function MenuDrawer() {
       </ListItem>
 
       <ListItem disablePadding>
-        <ListItemButton onClick={() => navigate(PublicRoutes.REGISTER)}>
+        <ListItemButton onClick={handleNavigate(PublicRoutes.REGISTER)}>
           <ListItemIcon>
             <AppRegistrationIcon />
           </ListItemIcon>
@@ -49,6 +52,7 @@ export default function MenuDrawer() {
           <ListItemText primary={'Settings'} />
         </ListItemButton>
       </ListItem>
+
     </List>
   )
 }

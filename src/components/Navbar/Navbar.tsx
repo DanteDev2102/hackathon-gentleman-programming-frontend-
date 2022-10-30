@@ -6,9 +6,12 @@ import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import { Link as RouterLink } from 'react-router-dom'
 import * as React from 'react'
 import MenuDrawer from './MenuDrawer'
 import MenuNav from './MenuNav'
+import { PublicRoutes } from '@/routes'
+
 
 interface Props {
   window?: () => Window
@@ -26,7 +29,7 @@ export default function Navbar(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant='h6'>Jobizz</Typography>
+        <Typography variant='h6' component={RouterLink} to={PublicRoutes.PROFILE}>Jobizz</Typography>
       <Divider />
       <MenuDrawer />
     </Box>

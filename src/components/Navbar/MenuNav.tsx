@@ -21,6 +21,9 @@ export default function MenuNav() {
           Register
         </Typography>
       </Button>
+      <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PublicRoutes.PROFILE}>
+        <Typography variant='subtitle2'>Profile</Typography>
+      </Button>
     </>
   )
 }
