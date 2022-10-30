@@ -1,19 +1,20 @@
 import { store } from '@/redux'
 import { Provider } from 'react-redux'
 import Router from './router/Router'
-import { Header, Layout } from '@/components'
+import { Layout, Footer } from '@/components'
 import { Navbar } from './components/Navbar'
 import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Navbar />
-        <Provider store={store}>
+      <Provider store={store}>
+        <Layout>
+          <Navbar />
           <Router />
-        </Provider>
-      </Layout>
+        </Layout>
+        <Footer />
+      </Provider>
     </BrowserRouter>
   )
 }

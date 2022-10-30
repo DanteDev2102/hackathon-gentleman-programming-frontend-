@@ -6,7 +6,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
   return (
     <Fragment>
       <CssBaseline />
-      <Container>{children}</Container>
+      <Container sx={{ minHeight: '100vh' }}>{children}</Container>
     </Fragment>
   )
 }
