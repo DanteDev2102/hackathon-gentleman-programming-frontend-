@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import { useFormik } from 'formik'
 import React from 'react'
 import * as Yup from 'yup'
+import { loginFormSchema } from './schemas/login-form-schema'
 export interface LoginInterface {}
 
 interface FormValues {
@@ -22,10 +23,7 @@ const Login: React.FC<LoginInterface> = () => {
     onSubmit: (values) => {
       console.log(values)
     },
-    validationSchema: Yup.object({
-      email: Yup.string().email('Invalid email').required('Required'),
-      password: Yup.string().required('No password provided.'),
-    }),
+    validationSchema: loginFormSchema,
   })
 
   return (
