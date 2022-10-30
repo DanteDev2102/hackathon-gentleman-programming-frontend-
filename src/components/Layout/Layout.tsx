@@ -1,6 +1,6 @@
 import { CssBaseline } from '@mui/material'
 import Container from '@mui/material/Container'
-import React, { Fragment, PropsWithChildren } from 'react'
+import { Fragment, PropsWithChildren } from 'react'
 
 export const Layout = ({ children }: PropsWithChildren) => {
   return (

@@ -1,9 +1,9 @@
+import { Footer, Layout } from '@/components'
 import { store } from '@/redux'
 import { Provider } from 'react-redux'
-import Router from './router/Router'
-import { Layout, Footer } from '@/components'
-import { Navbar } from './components/Navbar'
 import { BrowserRouter } from 'react-router-dom'
+import { Navbar } from './components/Navbar'
+import Router from './router/Router'
 
 function App() {
   return (
