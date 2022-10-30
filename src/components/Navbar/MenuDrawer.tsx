@@ -9,12 +9,22 @@ import { useNavigate } from 'react-router-dom'
 import { PublicRoutes } from '@/routes'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import LoginIcon from '@mui/icons-material/Login'
+import { useAppDispatch, useAuth } from '@/hooks'
+import LogoutIcon from '@mui/icons-material/Logout'
+import { resetCredentials } from '@/redux/login/authSlice'
 
 export default function MenuDrawer() {
   const navigate = useNavigate()
+  const user = useAuth()
+  const dispatch = useAppDispatch()
   const handleNavigate = (route: string) => () => {
     navigate(route)
   }
+  const handleLogout = () => {
+    dispatch(resetCredentials())
+    navigate(PublicRoutes.LOGIN)
+  }
+
   return (
     <List sx={{ textAlign: 'center' }}>
       <ListItem disablePadding>
@@ -26,23 +36,36 @@ export default function MenuDrawer() {
         </ListItemButton>
       </ListItem>
 
-      <ListItem disablePadding>
-        <ListItemButton onClick={handleNavigate(PublicRoutes.LOGIN)}>
-          <ListItemIcon>
-            <LoginIcon />
-          </ListItemIcon>
-          <ListItemText primary={'Login'} />
-        </ListItemButton>
-      </ListItem>
+      {user.auth ? (
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleLogout}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Logout'} />
+          </ListItemButton>
+        </ListItem>
+      ) : (
+        <>
+          <ListItem disablePadding>
+            <ListItemButton onClick={handleNavigate(PublicRoutes.LOGIN)}>
+              <ListItemIcon>
+                <LoginIcon />
+              </ListItemIcon>
+              <ListItemText primary={'Login'} />
+            </ListItemButton>
+          </ListItem>
 
-      <ListItem disablePadding>
-        <ListItemButton onClick={handleNavigate(PublicRoutes.REGISTER)}>
-          <ListItemIcon>
-            <AppRegistrationIcon />
-          </ListItemIcon>
-          <ListItemText primary={'Register'} />
-        </ListItemButton>
-      </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={handleNavigate(PublicRoutes.REGISTER)}>
+              <ListItemIcon>
+                <AppRegistrationIcon />
+              </ListItemIcon>
+              <ListItemText primary={'Register'} />
+            </ListItemButton>
+          </ListItem>
+        </>
+      )}
 
       <ListItem disablePadding>
         <ListItemButton>
@@ -52,7 +75,6 @@ export default function MenuDrawer() {
           <ListItemText primary={'Settings'} />
         </ListItemButton>
       </ListItem>
-
     </List>
   )
 }

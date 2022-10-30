@@ -1,9 +1,32 @@
 import { apiSlice } from './apiSlice'
 import { Endpoints } from './endpoints'
 
+export interface SeniorityResponseI {
+  data: Seniority[]
+  meta: Meta
+}
+export interface Attributes {
+  name: string
+  locale_key: string
+}
+export interface Meta {
+  page: number
+  per_page: number
+  total_pages: number
+}
+export interface Seniority {
+  id: string
+  type: string
+  attributes: Attributes
+}
+export interface Attributes {
+  name: string
+  locale_key: string
+}
+
 export const senioritiesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getSeniorities: builder.query<unknown[], void>({
+    getSeniorities: builder.query<SeniorityResponseI, void>({
       query: () => ({
         url: Endpoints.SENIORITIES,
         params: {

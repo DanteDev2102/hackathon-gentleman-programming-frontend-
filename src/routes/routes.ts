@@ -2,5 +2,9 @@ export enum PublicRoutes {
   HOME = '/',
   LOGIN = '/login',
   REGISTER = '/register',
-  PROFILE = '/profile'
+}
+export enum PrivateRoutes {
+  HOME_AUTH = '/home',
+  JOBS = '/jobs',
+  PROFILE = '/profile',
 }

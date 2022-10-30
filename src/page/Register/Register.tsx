@@ -1,24 +1,25 @@
-import { Button } from '@mui/material'
+import { useAuth } from '@/hooks'
+import { useGetSenioritiesQuery } from '@/redux/api/senioritiesApiSlice'
+import { useRegisterMutation } from '@/redux/register/registerApiSlice'
+import { PrivateRoutes } from '@/routes'
+import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import axios from 'axios'
 import { useFormik } from 'formik'
-import React from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import './styles/Register.css'
+
 export interface RegisterInterface {}
 
-interface FormValues {
-  name: string
-  email: string
-  password1: string
-  password2: string
-}
-
 const Register: React.FC<RegisterInterface> = () => {
+  const { data: seniorities } = useGetSenioritiesQuery()
+  const [register, result] = useRegisterMutation()
+  const navigate = useNavigate()
+  const user = useAuth()
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -26,27 +27,43 @@ const Register: React.FC<RegisterInterface> = () => {
       email: '',
       password1: '',
       password2: '',
-    },
-    onSubmit: async ({ email, lastName, firstName, password1, password2 }) => {
-      const res = await axios.post('http://localhost:3001/user/register', {
-        email,
-        lastName,
-        firstName,
-        password: password1,
-        passwordConfirm: password2,
-      })
-      console.log(res)
+      seniority: '',
     },
     validationSchema: Yup.object({
       firstName: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
       lastName: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
       email: Yup.string().email('Invalid email').required('Required'),
-      password1: Yup.string().required('No password provided.'),
+      seniority: Yup.string().required(),
+      password1: Yup.string().min(6, '6 catacteres como minimo').required('No password provided.'),
       password2: Yup.string()
+        .min(6, '6 catacteres como minimo')
         .oneOf([Yup.ref('password1'), null], 'Passwords must match')
         .required('Required'),
     }),
+    onSubmit: ({ email, lastName, firstName, password1, password2, seniority }) => {
+      register({
+        email,
+        lastName,
+        firstName,
+        password: password1,
+        passwordConfirm: password2,
+        seniority,
+      })
+        .unwrap()
+        .then((_res) => navigate(PrivateRoutes.HOME_AUTH))
+    },
   })
+  let content
+  if (seniorities)
+    content = seniorities.data?.map((seniority) => (
+      <MenuItem key={seniority.id} value={seniority.attributes.name}>
+        {seniority.attributes.name}
+      </MenuItem>
+    ))
+
+  useEffect(() => {
+    if (user.auth) navigate(PrivateRoutes.HOME_AUTH)
+  }, [])
 
   return (
     <>
@@ -54,7 +71,7 @@ const Register: React.FC<RegisterInterface> = () => {
         <Box component='form' onSubmit={formik.handleSubmit} sx={{ mt: 2 }}>
           <Grid container spacing={2} justifyContent='center' textAlign='center'>
             <Grid item xs={12}>
-              <Typography variant='h5'>Jobizz Login</Typography>
+              <Typography variant='h5'>Jobizz Register</Typography>
               <Typography>Registration 👍</Typography>
               <Typography variant='body2'>Let's Register, Apply to jobs!</Typography>
             </Grid>
@@ -93,7 +110,7 @@ const Register: React.FC<RegisterInterface> = () => {
                 name='email'
                 label='email'
                 type='email'
-                placeholder='usuario o mail'
+                placeholder='email'
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}
@@ -130,10 +147,25 @@ const Register: React.FC<RegisterInterface> = () => {
                 helperText={formik.touched.password2 && formik.errors.password2}
               />
             </Grid>
+            <Grid item xs={12}>
+              <FormControl fullWidth>
+                <InputLabel id='seniority'>Seniority</InputLabel>
+                <Select
+                  labelId='seniority'
+                  id='seniority'
+                  name='seniority'
+                  label='seniority'
+                  value={formik.values.seniority}
+                  onChange={formik.handleChange}>
+                  {content}
+                </Select>
+              </FormControl>
+            </Grid>
 
+            <Grid item xs={12}></Grid>
             <Grid item xs={12}>
               <Button size='large' fullWidth type='submit' variant='contained'>
-                submit
+                {result.isLoading ? <CircularProgress /> : 'submit'}
               </Button>
             </Grid>
           </Grid>

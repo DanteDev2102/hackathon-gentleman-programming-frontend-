@@ -1,3 +1,5 @@
+import HomeAuth from '@/page/HomeAuth/HomeAuth'
+import { PublicRoutes, PrivateRoutes } from '@/routes'
 import { Route, Routes } from 'react-router'
 import { Home } from '../page/Home'
 import { Login } from '../page/Login'
@@ -10,11 +12,13 @@ export interface RouterInterface {}
 const Router: React.FC<RouterInterface> = () => {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
+      <Route path={PublicRoutes.HOME} element={<Home />} />
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
-      <Route path='/puestoslaborales' element={<PuestosLaborales />} />
-      <Route path='/profile' element={<Profile />} />
+
+      <Route path={PrivateRoutes.HOME_AUTH} element={<HomeAuth />} />
+      <Route path={PrivateRoutes.JOBS} element={<PuestosLaborales />} />
+      <Route path={PrivateRoutes.PROFILE} element={<Profile />} />
     </Routes>
   )
 }
