@@ -1,13 +1,10 @@
 import { useAuth } from '@/hooks/useAuth'
-import { useGetJobsQuery } from '@/redux'
 import { Avatar } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { JobsForYou } from './components'
-import { RecommendedJob } from './components/Recommended'
-import SearchBar from './components/SearchBar'
 import { HomeContextProvider } from './Context/HomeContext'
 
 const HomeAuth = () => {
@@ -28,9 +25,6 @@ const HomeAuth = () => {
             <Grid item xs={12} display='flex' justifyContent='center'>
               <Avatar sx={{ width: 80, height: 80 }} />
             </Grid>
-            {/* <Grid item xs={12}>
-              <SearchBar />
-            </Grid> */}
             <Grid item xs={12}>
               <JobsForYou />
             </Grid>

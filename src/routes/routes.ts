@@ -1,5 +1,5 @@
 export enum PublicRoutes {
-  HOME = '/',
+  LANDING = '/',
   LOGIN = '/login',
   REGISTER = '/register',
 }

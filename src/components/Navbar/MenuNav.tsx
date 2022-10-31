@@ -17,15 +17,24 @@ export default function MenuNav() {
   }
   return (
     <>
-      <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PublicRoutes.HOME}>
-        <Typography variant='subtitle2' fontWeight='bold'>
-          Home
-        </Typography>
-      </Button>
       {user.auth ? (
-        <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PrivateRoutes.PROFILE}>
-          <Typography variant='subtitle2'>Profile</Typography>
-        </Button>
+        <>
+          <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PrivateRoutes.HOME_AUTH}>
+            <Typography variant='subtitle2' fontWeight='bold'>
+              Home
+            </Typography>
+          </Button>
+          <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PrivateRoutes.PROFILE}>
+            <Typography variant='subtitle2' fontWeight='bold'>
+              Profile
+            </Typography>
+          </Button>
+          <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PrivateRoutes.JOBS}>
+            <Typography variant='subtitle2' fontWeight='bold'>
+              Jobs
+            </Typography>
+          </Button>
+        </>
       ) : (
         <></>
       )}

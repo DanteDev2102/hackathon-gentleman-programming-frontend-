@@ -25,7 +25,7 @@ const JobsForYou = () => {
       <Grid>
         <Divider sx={{ height: 5, m: 0.5 }} orientation='horizontal' />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} display='flex' justifyContent='center'>
         <JobForYouCard />
       </Grid>
     </Grid>
