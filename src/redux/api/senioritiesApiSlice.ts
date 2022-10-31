@@ -2,7 +2,7 @@ import { apiSlice } from './apiSlice'
 import { Endpoints } from './endpoints'
 
 export interface SeniorityResponseI {
-  data: Seniority[]
+  data: SenioritiesI[]
   meta: Meta
 }
 export interface Attributes {
@@ -14,7 +14,7 @@ export interface Meta {
   per_page: number
   total_pages: number
 }
-export interface Seniority {
+export interface SenioritiesI {
   id: string
   type: string
   attributes: Attributes

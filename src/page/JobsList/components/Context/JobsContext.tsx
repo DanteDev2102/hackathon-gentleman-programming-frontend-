@@ -5,6 +5,8 @@ import { createContext, Dispatch, PropsWithChildren as Props, SetStateAction, us
 interface JobsContext {
   response: JobsResponseI | undefined
   setSearchValue: Dispatch<SetStateAction<JobsSearchParams>>
+  isSuccess: boolean
+  isLoading: boolean
 }
 
 export const JobsContext = createContext<JobsContext | null>(null)
@@ -25,6 +27,6 @@ export const JobsContextProvider = ({ children }: Props) => {
     }
   }, [data])
 
-  const values: JobsContext = { response, setSearchValue }
+  const values: JobsContext = { response, setSearchValue, isLoading, isSuccess }
   return <JobsContext.Provider value={values}>{children}</JobsContext.Provider>
 }

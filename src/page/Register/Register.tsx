@@ -63,7 +63,7 @@ const Register: React.FC<RegisterInterface> = () => {
 
   return (
     <>
-      <Container component='main' maxWidth='xs'>
+      <Container component='main' maxWidth='sm' sx={{ mt: '5%' }}>
         <Box component='form' onSubmit={formik.handleSubmit} sx={{ mt: 2 }}>
           <Grid container spacing={2} justifyContent='center' textAlign='center'>
             <Grid item xs={12}>
