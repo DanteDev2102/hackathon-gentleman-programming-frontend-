@@ -15,7 +15,9 @@ const EmptyAuthState: LoginResponseI = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth') as string) : EmptyAuthState,
+  initialState: sessionStorage.getItem('auth')
+    ? JSON.parse(sessionStorage.getItem('auth') as string)
+    : (EmptyAuthState as LoginResponseI),
   reducers: {
     setCredentials: (_state, action) => {
       persistLocalStorage<LoginResponseI>(Key, action.payload)
@@ -38,4 +40,4 @@ const Key = 'auth'
 
 export default authSlice.reducer
 
-export const selectCurrentUser = (state: RootState) => state.auth
+export const selectCurrentUser = (state: RootState) => state.auth as LoginResponseI

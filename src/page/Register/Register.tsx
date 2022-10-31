@@ -61,10 +61,6 @@ const Register: React.FC<RegisterInterface> = () => {
       </MenuItem>
     ))
 
-  useEffect(() => {
-    if (user.auth) navigate(PrivateRoutes.HOME_AUTH)
-  }, [])
-
   return (
     <>
       <Container component='main' maxWidth='xs'>

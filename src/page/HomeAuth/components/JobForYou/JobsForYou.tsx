@@ -9,7 +9,7 @@ const JobsForYou = () => {
     <Grid container>
       <Grid item xs={6}>
         <Typography variant='subtitle2' fontWeight='bold'>
-          Featured Jobs
+          Surprise Jobs
         </Typography>
       </Grid>
       <Grid item xs={6} display='grid' justifyItems='end'>

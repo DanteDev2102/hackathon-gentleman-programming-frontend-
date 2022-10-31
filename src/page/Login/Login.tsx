@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { useFormik } from 'formik'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 export interface LoginInterface {}
@@ -29,17 +29,12 @@ const Login: React.FC<LoginInterface> = () => {
       password: Yup.string().required('No password provided.'),
     }),
     onSubmit: (values) => {
-      console.log(values)
       login(values)
         .unwrap()
         .then((res) => dispatch(setCredentials(res)))
         .then((_res) => navigate(PrivateRoutes.HOME_AUTH))
     },
   })
-
-  useEffect(() => {
-    if (user.auth) navigate(PrivateRoutes.HOME_AUTH)
-  }, [])
 
   return (
     <Container component='main' maxWidth='xs'>
