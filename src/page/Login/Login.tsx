@@ -1,7 +1,7 @@
 import { useAppDispatch, useAuth } from '@/hooks'
 import { setCredentials } from '@/redux/login/authSlice'
 import { useLoginMutation } from '@/redux/login/loginApiSlice'
-import { PrivateRoutes } from '@/routes'
+import { PrivateRoutes, PublicRoutes } from '@/routes'
 import { Button } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -31,21 +31,23 @@ const Login: React.FC<LoginInterface> = () => {
     onSubmit: (values) => {
       login(values)
         .unwrap()
-        .then((res) => dispatch(setCredentials(res)))
-        .then((_res) => navigate(PrivateRoutes.HOME_AUTH))
+        .then((res: any) => dispatch(setCredentials(res)))
+        .then((res: any) => navigate(PrivateRoutes.HOME_AUTH))
     },
   })
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component='main' maxWidth='sm'>
       {user.auth ? (
         <></>
       ) : (
         <Box component='form' onSubmit={formik.handleSubmit} sx={{ mt: 2 }}>
           <Grid container spacing={2} justifyContent='center' textAlign='center'>
             <Grid item xs={12}>
-              <Typography variant='h5'>Jobizz Login</Typography>
-              <Typography>Welcame Back 👋</Typography>
+              <Typography variant='h4' fontWeight='bold'>
+                Jobizz Login
+              </Typography>
+              <Typography>Welcome Back 👋</Typography>
               <Typography variant='body2'>Let's log in, Apply to jobs!</Typography>
             </Grid>
             <Grid item xs={12}>
@@ -79,7 +81,12 @@ const Login: React.FC<LoginInterface> = () => {
             </Grid>
             <Grid item xs={12}>
               <Button size='large' fullWidth type='submit' variant='contained'>
-                Login
+                Iniciar
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Button size='large' fullWidth variant='outlined' onClick={() => navigate(PublicRoutes.REGISTER)}>
+                ¿Aun no tienes cuenta?
               </Button>
             </Grid>
           </Grid>

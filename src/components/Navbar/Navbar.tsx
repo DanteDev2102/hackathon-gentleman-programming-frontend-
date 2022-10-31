@@ -10,8 +10,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import * as React from 'react'
 import MenuDrawer from './MenuDrawer'
 import MenuNav from './MenuNav'
-import { PublicRoutes } from '@/routes'
-
+import { PrivateRoutes, PublicRoutes } from '@/routes'
 
 interface Props {
   window?: () => Window
@@ -29,7 +28,9 @@ export default function Navbar(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-        <Typography variant='h6' component={RouterLink} to={PublicRoutes.PROFILE}>Jobizz</Typography>
+      <Typography variant='h6' component={RouterLink} to={PrivateRoutes.PROFILE}>
+        Jobizz
+      </Typography>
       <Divider />
       <MenuDrawer />
     </Box>
@@ -50,7 +51,7 @@ export default function Navbar(props: Props) {
             sx={{ mr: 2, display: { sm: 'none' }, justifyContent: 'space-between' }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'block' } }}>
+          <Typography variant='h3' component='div' sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'block' } }}>
             Jobizz
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

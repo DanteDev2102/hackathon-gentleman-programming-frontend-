@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks'
 import { useGetSenioritiesQuery } from '@/redux/api/senioritiesApiSlice'
 import { useRegisterMutation } from '@/redux/register/registerApiSlice'
-import { PrivateRoutes } from '@/routes'
+import { PrivateRoutes, PublicRoutes } from '@/routes'
 import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -67,7 +67,9 @@ const Register: React.FC<RegisterInterface> = () => {
         <Box component='form' onSubmit={formik.handleSubmit} sx={{ mt: 2 }}>
           <Grid container spacing={2} justifyContent='center' textAlign='center'>
             <Grid item xs={12}>
-              <Typography variant='h5'>Jobizz Register</Typography>
+              <Typography variant='h4' fontWeight='bold'>
+                Jobizz Register
+              </Typography>
               <Typography>Registration 👍</Typography>
               <Typography variant='body2'>Let's Register, Apply to jobs!</Typography>
             </Grid>
@@ -161,7 +163,12 @@ const Register: React.FC<RegisterInterface> = () => {
             <Grid item xs={12}></Grid>
             <Grid item xs={12}>
               <Button size='large' fullWidth type='submit' variant='contained'>
-                {result.isLoading ? <CircularProgress /> : 'submit'}
+                {result.isLoading ? <CircularProgress /> : 'enviar'}
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Button size='large' fullWidth variant='outlined' onClick={() => navigate(PublicRoutes.LOGIN)}>
+                ¿Ya tienes cuenta?
               </Button>
             </Grid>
           </Grid>
