@@ -24,11 +24,11 @@ export default function MenuNav() {
               Home
             </Typography>
           </Button>
-          <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PrivateRoutes.PROFILE}>
+          {/* <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PrivateRoutes.PROFILE}>
             <Typography variant='subtitle2' fontWeight='bold'>
               Profile
             </Typography>
-          </Button>
+          </Button> */}
           <Button sx={menuStyles} variant='text' color='inherit' component={RouterLink} to={PrivateRoutes.JOBS}>
             <Typography variant='subtitle2' fontWeight='bold'>
               Jobs

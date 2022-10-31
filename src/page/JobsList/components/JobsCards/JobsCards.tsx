@@ -1,27 +1,36 @@
-import { Typography } from '@mui/material'
+import { CircularProgress, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid'
+import Container from '@mui/material/Container'
 import { useContext } from 'react'
 import { JobsContext } from '../Context'
 import JobCard from '../JobCard/JobCard'
 
 const JobCards = () => {
   const context = useContext(JobsContext)
-  console.log(context?.response)
+
+  let content
+  if (context?.isLoading)
+    content = (
+      <Container sx={{ my: 4, display: 'flex', justifyContent: 'center' }}>
+        <CircularProgress />
+      </Container>
+    )
+  if (context?.isSuccess && context.response?.data.length === 0) {
+    content = (
+      <Container sx={{ my: 4, display: 'flex', justifyContent: 'center' }}>
+        <Typography>Not match key words</Typography>
+      </Container>
+    )
+  } else if (context?.isSuccess && context.response?.data) {
+    content = context?.response?.data.map((job) => (
+      <Grid key={job.id} item xs={12}>
+        <JobCard {...job} />
+      </Grid>
+    ))
+  }
   return (
-    <Grid container spacing={1}>
-      <Grid item xs={12}></Grid>
-      {context?.response?.data.map((job) => {
-        return (
-          <Grid key={job.id} item xs={12}>
-            <JobCard
-              title={job.attributes.title}
-              category_name={job.attributes.category_name}
-              country={job.attributes.country}
-              applications_count={job.attributes.applications_count}
-            />
-          </Grid>
-        )
-      })}
+    <Grid container spacing={1} sx={{ my: 2 }}>
+      {content}
     </Grid>
   )
 }

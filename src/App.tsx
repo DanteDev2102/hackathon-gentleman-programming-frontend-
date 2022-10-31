@@ -7,6 +7,7 @@ import { Login, Profile, PuestosLaborales, Register, LandingPage, JobsList } fro
 import { PrivateRoutes, PublicRoutes } from './routes/routes'
 import { HomeAuth } from './page/HomeAuth'
 import { AuthGuard } from '@/guards'
+import RoutesWithNotFound from './utilities/RoutesWithNoFound'
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Provider store={store}>
         <Navbar />
         <Layout>
-          <Routes>
+          <RoutesWithNotFound>
             <Route path={PublicRoutes.LANDING} element={<LandingPage />} />
             <Route path={PublicRoutes.REGISTER} element={<Register />} />
             <Route path={PublicRoutes.LOGIN} element={<Login />} />
@@ -22,9 +23,8 @@ function App() {
             <Route element={<AuthGuard />}>
               <Route path={PrivateRoutes.HOME_AUTH} element={<HomeAuth />} />
               <Route path={PrivateRoutes.JOBS} element={<JobsList />} />
-              <Route path={PrivateRoutes.PROFILE} element={<Profile />} />
             </Route>
-          </Routes>
+          </RoutesWithNotFound>
         </Layout>
         <Footer />
       </Provider>

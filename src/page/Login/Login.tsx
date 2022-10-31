@@ -37,7 +37,7 @@ const Login: React.FC<LoginInterface> = () => {
   })
 
   return (
-    <Container component='main' maxWidth='sm'>
+    <Container component='main' maxWidth='sm' sx={{ mt: '10%' }}>
       {user.auth ? (
         <></>
       ) : (
