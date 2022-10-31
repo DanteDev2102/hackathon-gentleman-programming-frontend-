@@ -3,6 +3,8 @@ import Grid from '@mui/material/Grid'
 import { Link as RouterLink } from 'react-router-dom'
 import { PrivateRoutes } from '@/routes'
 import RecommendedJobCard from './RecommendedJobCard'
+import { useContext } from 'react'
+import { HomeContext } from '../../Context'
 
 const RecommendedJob = () => {
   return (
